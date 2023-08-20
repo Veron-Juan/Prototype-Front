@@ -1,15 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// Creamos el contexto
+
 export const DataContext = createContext();
 
-// Creamos el proveedor del contexto
+
 export const DataProvider = ({ children }) => {
 const [loading, setLoading] = useState(false)
   const [data, setData] = useState([]);
 
   
-
   useEffect(() => {
     const getData = async ()=> {
         try{
@@ -28,8 +27,8 @@ const [loading, setLoading] = useState(false)
   }, []);
 
   return (
-    // Pasamos los datos al value del provider para que estén disponibles para todos los componentes hijos
-    <DataContext.Provider value={{ data, setData }}>
+    //data disponiblkes para todos los componentes hijos
+    <DataContext.Provider value={{ data, setData, loading }}>
       {children}
     </DataContext.Provider>
   );

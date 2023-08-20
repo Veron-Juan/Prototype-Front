@@ -5,25 +5,8 @@ import Spinner from './components/Spinner';
 import { DataContext } from './Context/store';
 
 function ChildComponent() {
-  const [loading, setLoading] = useState(false);
-  const { data, setData } = useContext(DataContext);
-
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch("https://api.sandapi.com/user_HHg7Pn/crenein");
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  
+  const { data, setData, loading } = useContext(DataContext);
 
   return (
     <div className="flex space-x-4 ">

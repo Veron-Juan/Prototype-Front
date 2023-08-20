@@ -7,12 +7,7 @@ export default function FolderRaiz({CategoryName, data}) {
 
   const { setData } = useContext(DataContext);
 
-  useEffect(()=> {
-
-    // Debes mover tu función addFile fuera de useEffect.
-    
-  }, [])
-
+  
   const addFile = async (fileName) => {
     const url = "https://api.sandapi.com/user_HHg7Pn/crenein";
     const fileData = {
@@ -32,12 +27,12 @@ export default function FolderRaiz({CategoryName, data}) {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`error status: ${response.status}`);
       }
 
-      const responseData = await response.json();
+      // const responseData = await response.json();
 
-      // Actualizar tu data de estado después de realizar la solicitud POST
+      
       setData(prevData => [...prevData, fileData]);
       
     } catch (error) {
@@ -46,7 +41,7 @@ export default function FolderRaiz({CategoryName, data}) {
   };
 
   const handleAdd = () => {
-    const fileName = prompt("Add Something");
+    const fileName = prompt("Agregar");
     if (fileName) {
       addFile(fileName);
     }

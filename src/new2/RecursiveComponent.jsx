@@ -6,7 +6,7 @@ const RecursiveComponent = ({ data }) => {
 
     const [showNested, setShowNested] = useState({});
 
-    const toggleNested = (name) => {
+    const toggle = (name) => {
         setShowNested({ ...showNested, [name]: !showNested[name] });
       };
 
@@ -16,14 +16,14 @@ const RecursiveComponent = ({ data }) => {
       {!Array.isArray(data) || data.length === 0 ? <p>Empty</p> : data.map((parent) => {
         return (
           <div key={parent.id}>
-            {/* rendering folders */}
+            {/* folders */}
             {parent.isFolder && 
             <FolderComponent 
-            onClick={() => toggleNested(parent.name)}
+            onClick={() => toggle(parent.name)}
             name={parent.name}
             />
             }
-            {/* rendering files */}
+            {/*files */}
             {!parent.isFolder && <FileComponent name={parent.name} />}
             <div className={!showNested[parent.name] ? 'hidden' : ''}  >
               {parent.children && <RecursiveComponent data={parent.children} />}
